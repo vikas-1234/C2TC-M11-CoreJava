@@ -3,7 +3,7 @@ package com.tns.framework;
 public abstract class ShopAcc {
 
 	// here declaring account number
-	private int accNo;
+	private  int accNo;
 
 	// here getting account number
 	public int getAccNo() {

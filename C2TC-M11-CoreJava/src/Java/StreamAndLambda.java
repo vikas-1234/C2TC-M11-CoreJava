@@ -1,4 +1,5 @@
 package Java;
+import java.util.*;
 
 import static org.junit.jupiter.api.Assertions.fail;
 
@@ -11,7 +12,7 @@ public class StreamAndLambda {
 
 //	private static final char[] fail = null;
 
-	public static void main(String[] args, Object i) {
+	public static void main(String[] args) {
 		
 		List<Integer> org=List.of(12,45,67,89,23,54,89,90,87,23,45,12,24,56);
 		System.out.println(org);
@@ -29,11 +30,10 @@ public class StreamAndLambda {
 //System.out.println(evenList);
 	
 		Stream<Integer> stream=org.stream();
-	
-		List<Integer> l=stream.filter(i=>i<33).collect(Collectors.toList());
+		List<Integer> l=stream.filter(i->i<33).collect(Collectors.toList());
 		System.out.println(l);
 		
-		long fail=l.stream().filter(i=>i<33).count();
+		long fail=l.stream().filter(i->i<33).count();
 		System.out.println(fail);
 		
 		List<Integer> updateList=org.stream().map(i->i+5).collect(Collectors.toList());

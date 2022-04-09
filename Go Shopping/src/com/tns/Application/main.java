@@ -9,8 +9,8 @@ public class main {
 	public static void main(String[] args) {
 		
 		ShopFactory shop=new GSShopFactory();
-		PrimeAcc prime= new GSPrimeAcc(1, "Tejshree", 5000, true);
-		NormalAcc normal=new GSNormalAcc(2, "Mayuri", 10000, 100);
+		PrimeAcc prime= new GSPrimeAcc(1, "Tejas", 5000, true);
+		NormalAcc normal=new GSNormalAcc(2, "Atul", 10000, 100);
 		
 		prime.bookProduct(5000);
 		normal.bookProduct(10000);
