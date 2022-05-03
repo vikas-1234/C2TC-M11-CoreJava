@@ -12,7 +12,10 @@ public class MainClass {
 	public static void main(String[] args) {
 		
 		IShopService serviceShop = new ShopService();
-		Shop shop=new Shop<>();
+//		Shop<Object, Object> shop=new Shop<>();
+		
+		
+		Shop shop = new Shop();
 		
 		/* Create Operation */
 		shop.setShopId(100);
@@ -21,12 +24,15 @@ public class MainClass {
 		shop.setShopStatus("Open");
 		shop.setLeaseStatus("Paid");
 		
-		shop=serviceShop.addShop(shop);
-		System.out.println("ShopId : " + shop.getShopId());
-		System.out.println("ShopCategory : " + shop.getShopCategory());
-		System.out.println("ShopName : " + shop.getShopName());
-		System.out.println("ShopStatus : " + shop.getShopStatus());
-		System.out.println("LeaseStatus : " + shop.getLeaseStatus());
+		serviceShop.addShop(shop);
+//		System.out.println(serviceShop);
+		
+//		shop=serviceShop.addShop(shop);
+//		System.out.println("ShopId : " + shop.getShopId());
+//		System.out.println("ShopCategory : " + shop.getShopCategory());
+//		System.out.println("ShopName : " + shop.getShopName());
+//		System.out.println("ShopStatus : " + shop.getShopStatus());
+//		System.out.println("LeaseStatus : " + shop.getLeaseStatus());
 
 
 
