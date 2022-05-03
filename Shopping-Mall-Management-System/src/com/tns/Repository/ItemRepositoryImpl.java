@@ -1,31 +1,77 @@
-package com.tns.services;
+package com.tns.Repository;
 
 import java.util.List;
 
 import javax.persistence.EntityManager;
-import javax.persistence.Query;
 
-import com.tns.entities.Item;
-import com.tns.repository.JPAUtil;
+import com.mysql.cj.Query;
+import com.tns.Entities.Item;
+import com.tns.Exception.InvalidItemException;
 
-public class IshopServiceImpl implements IItemRepository {
+public class ItemRepositoryImpl implements IItemRepository {
+
+//	@Override
+//	public Item addItem(Item item) {
+//		// TODO Auto-generated method stub
+//		return null;
+//	}
+//
+//	@Override
+//	public Item updateItem(Item item) {
+//		// TODO Auto-generated method stub
+//		return null;
+//	}
+//
+//	@Override
+//	public Item searchItem(String str) {
+//		// TODO Auto-generated method stub
+//		return null;
+//	}
+//
+//	@Override
+//	public Item searchItem(int id) {
+//		// TODO Auto-generated method stub
+//		return null;
+//	}
+//
+//	@Override
+//	public Item deleteItem(int id) {
+//		// TODO Auto-generated method stub
+//		return null;
+//	}
+//
+//	@Override
+//	public void beginTransaction() {
+//		// TODO Auto-generated method stub
+//		
+//	}
+//
+//	@Override
+//	public void commitTransaction() {
+//		// TODO Auto-generated method stub
+//		
+//	}
+	
+	
 	private EntityManager entityManager;
 
 //	Constructor
-	public IshopServiceImpl() {
+	public ItemRepositoryImpl() {
 		entityManager = JPAUtil.getEntityManager();
 	}
 
 //	addItem
+	@Override
 	public Item addItem(Item item) {
 		entityManager.persist(item);
 		return item;
 	}
 
 //	updateItem
+	@Override
 	public Item updateItem(Item item) {
-		int a = item.getItemiId();
-		Item i = entityManager.find(Item.class,a);
+		int a = item.getItemId();
+		Item i = entityManager.find(Item.class, a);
 		try {
 			if (i == null) {
 				throw new InvalidItemException("Item not Found !!");
@@ -42,12 +88,12 @@ public class IshopServiceImpl implements IItemRepository {
 	@SuppressWarnings("unchecked")
 	@Override
 	public Item searchItem(String str) {
-		Query query = entityManager.createQuery("Select i from Item i where i.name LIKE :a ");
+		javax.persistence.Query query = entityManager.createQuery("Select i from Item i where i.name LIKE :a ");
 		query.setParameter("a", "%" + str + "%");
 		List<Item> list = query.getResultList();
 		System.out.println("Item :");
 		for (Item s : list) {
-			System.out.println(s.getItemiId() + " " + s.getName() + "|  Price:" + s.getPrice());
+			System.out.println(s.getItemId() + " " + s.getName() + "|  Price:" + s.getPrice());
 		}
 		return null;
 	}
@@ -86,6 +132,5 @@ public class IshopServiceImpl implements IItemRepository {
 		entityManager.getTransaction().commit();
 	}
 
-	
 
 }

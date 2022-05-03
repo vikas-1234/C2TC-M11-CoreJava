@@ -1,14 +1,11 @@
-package com.tns.services;
+package com.tns.Repository;
 
-
-import java.util.*;
 import javax.persistence.EntityManager;
 
-import com.tns.entities.shop;
-import com.tns.repository.IShopRepositoryDao;
-import com.tns.repository.JPAUtil;
+import com.tns.Exception.ShopNotFoundException;
 
-public abstract class ShopRepositoryImpl implements IShopRepositoryDao {
+public abstract class ShopRepositoryImpl<Shop> implements IShopRepository {
+	
 	private EntityManager entityManager;
 
 //	Constructor
@@ -23,9 +20,9 @@ public abstract class ShopRepositoryImpl implements IShopRepositoryDao {
 	}
 
 //	updateShop
-	public shop updateShop(Shop shop) {
-		int a = ((com.tns.entities.shop) shop).getShopId();
-		Shop sh = entityManager.find(Shop.class, a);
+	public Shop updateShop(Shop shop) {
+		int a = ((com.tns.Entities.Shop) shop).getShopId();
+		Shop sh = entityManager.find(null, a);
 		try {
 			if (sh == null) {
 				throw new ShopNotFoundException("Shop not found");
@@ -35,12 +32,13 @@ public abstract class ShopRepositoryImpl implements IShopRepositoryDao {
 		} catch (ShopNotFoundException e) {
 			System.out.println(e);
 		}
-		return (com.tns.entities.shop) sh;
+		return sh;
 	}
 
 //	searchShopById
-	public Shop searchShopById(int id) {
-		Shop shop = entityManager.find(Shop.class, id);
+	@Override
+	public com.tns.Entities.Shop searchShopById(int id) {
+		Shop shop = entityManager.find(null, id);
 		try {
 			if (shop == null) {
 				throw new ShopNotFoundException("Shop not found");
@@ -51,12 +49,13 @@ public abstract class ShopRepositoryImpl implements IShopRepositoryDao {
 		} catch (ShopNotFoundException e) {
 			System.out.println(e);
 		}
-		return shop;
+		return (com.tns.Entities.Shop) shop;
 	}
 
 //	deleteShop
+	@Override
 	public boolean deleteShop(int shopId) {
-		Shop shop = entityManager.find(Shop.class, shopId);
+		Shop shop = entityManager.find(null, shopId);
 		try {
 			if (shop == null) {
 				throw new ShopNotFoundException("Shop not found");

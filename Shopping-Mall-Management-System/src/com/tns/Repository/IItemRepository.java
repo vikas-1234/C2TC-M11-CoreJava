@@ -1,8 +1,9 @@
-package com.tns.services;
+package com.tns.Repository;
 
-import com.tns.entities.Item;
+import com.tns.Entities.Item;
 
 public interface IItemRepository {
+	
 	Item addItem(Item item);
 
 	Item updateItem(Item item);
@@ -16,4 +17,5 @@ public interface IItemRepository {
 	void beginTransaction();
 
 	void commitTransaction();
+
 }
